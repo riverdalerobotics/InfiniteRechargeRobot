@@ -12,6 +12,6 @@ package frc.robot;
  */
 public enum WheelColor {
 
-    RED, BLUE, GREEN, YELLOW;
+    RED, BLUE, GREEN, YELLOW, NONE;
 
 }

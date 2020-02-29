@@ -12,11 +12,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
+import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.WheelColor;
@@ -31,6 +32,10 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   DoubleSolenoid upPiston;
   Value pistonState;
+
+  String[] colorLookup = {
+    "---", "Red", "Yellow", "Blue", "Green"
+  };
   
   public PanelSubsystem() {
 
@@ -72,6 +77,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
     }
     return 0;
   }
+
   public WheelColor getColor () {
     
     Color c = colorSensor.getColor();
@@ -85,7 +91,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
         return WheelColor.YELLOW;
       }
 
-      return null;
+      return WheelColor.NONE;
   }
   
   public void spinClockwise () {
@@ -111,6 +117,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-
+    Robot.colorLayout.addString("Target Color", () -> colorLookup[getTargetColour()]);
+    Robot.colorLayout.addString("Current Color", () -> getColor().toString());
   }
 }

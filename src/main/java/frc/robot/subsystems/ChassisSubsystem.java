@@ -14,16 +14,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
   WPI_VictorSPX leftMotorLead;
   WPI_VictorSPX leftMotorFollowOne;
   WPI_VictorSPX leftMotorFollowTwo;
+
+  Encoder leftEncoder;
   
   WPI_VictorSPX rightMotorLead;
   WPI_VictorSPX rightMotorFollowOne;
   WPI_VictorSPX rightMotorFollowTwo;
+
+  Encoder rightEncoder;
 
   DifferentialDrive drive;
 
@@ -38,10 +43,18 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
     leftMotorFollowOne.follow(leftMotorLead);
     leftMotorFollowTwo.follow(leftMotorLead);
+
+    leftMotorLead.configPeakOutputForward(1);
+
+    leftEncoder = new Encoder(RobotMap.LEFT_MOTOR_ENCODER_A, RobotMap.LEFT_MOTOR_ENCODER_B);
     
     rightMotorLead = new WPI_VictorSPX(RobotMap.RIGHT_MOTOR_LEAD);
     rightMotorFollowOne = new WPI_VictorSPX(RobotMap.RIGHT_MOTOR_FOLLOW_ONE);
     rightMotorFollowTwo = new WPI_VictorSPX(RobotMap.RIGHT_MOTOR_FOLLOW_TWO);
+
+    rightMotorLead.configPeakOutputForward(1);
+
+    rightEncoder = new Encoder(RobotMap.RIGHT_MOTOR_ENCODER_A, RobotMap.RIGHT_MOTOR_ENCODER_B);
 
     rightMotorFollowOne.follow(rightMotorLead);
     rightMotorFollowTwo.follow(rightMotorLead);
@@ -59,9 +72,19 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
     drive.arcadeDrive(speed, turn);
   }
 
+  public double getRightEncoder () {
+    return rightEncoder.getDistance();
+  }
+
+  public double getLeftEncoder () {
+    return leftEncoder.getDistance();
+  }
+
   @Override
   public void updateSmartdashboard() {
     Robot.shuffleBoardtab.add(drive);
+    Robot.shuffleBoardtab.add("Right Encoder", getRightEncoder());
+    Robot.shuffleBoardtab.add("Left Encoder", getLeftEncoder());
   }
 
 }

@@ -13,6 +13,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ChassisDefaultCommand;
@@ -48,6 +49,8 @@ public class Robot extends TimedRobot {
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final ShuffleboardTab shuffleBoardtab = Shuffleboard.getTab("Game Tab");
+  public static final ShuffleboardLayout shooterLayout = Robot.shuffleBoardtab.getLayout("Shooter System");
+  public static final ShuffleboardLayout colorLayout = Robot.shuffleBoardtab.getLayout("Color System");
 
   public static final OI oi = new OI();
   public static UsbCamera camera;

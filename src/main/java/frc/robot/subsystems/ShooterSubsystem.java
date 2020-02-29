@@ -11,9 +11,9 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
+import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 
@@ -49,14 +49,18 @@ public class ShooterSubsystem extends SubsystemBase implements DashboardUpdater{
   }
 
   public double getShooterVelocity(){
-    
     return shooterEncoder.getVelocity();
-    
   }
 
   @Override
   public void updateSmartdashboard() {
-    SmartDashboard.putNumber("Shooter Speed", getShooterVelocity());
+    Robot.shooterLayout.addNumber("Shooter Speed", () -> {
+      return getShooterVelocity();
+    });
+    Robot.shooterLayout.addNumber("Target Shooter Speed", () -> RobotConstants.MIN_SHOOT_VELOCITY);
+    Robot.shooterLayout.addBoolean("Shooter Ready", () -> {
+      return getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY;
+    });
   }
 
 }

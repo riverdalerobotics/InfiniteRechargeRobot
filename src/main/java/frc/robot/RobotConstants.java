@@ -26,5 +26,9 @@ public class RobotConstants {
     public final static int D_PAD_UP = 0;
     public final static int D_PAD_DOWN = 180;
 
+    public final static double DRIVE_P = 0.00025;
+    public final static double DRIVE_I = 0.000075;
+    public final static double DRIVE_D = 0.00005;
+
     public final static double MIN_SHOOT_VELOCITY = 5400;
 }

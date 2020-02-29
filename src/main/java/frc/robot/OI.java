@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -37,26 +36,30 @@ public class OI implements DashboardUpdater {
 
     JoystickButton toggleIntakeLift;
     public OI () {
+        
         spinPanelButton = new JoystickButton(operator, RobotConstants.A_BUTTON);
+        spinPanelButton.whenPressed(new SpinPanelCommand());
+        
+        openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         openPanelWheel = new JoystickButton(operator, RobotConstants.B_BUTTON);
-        toggleIntakeLift = new JoystickButton(operator, RobotConstants.SELECT_BUTTON); 
-
+        
         openClimb = new Button (){
             @Override
             public boolean get() {
                 return operator.getPOV() == RobotConstants.D_PAD_UP;
             }
         };
+        openClimb.whenPressed(new OpenClimbCommand());
+        
         closeClimb = new Button (){
             @Override
             public boolean get (){
                 return operator.getPOV() == RobotConstants.D_PAD_DOWN;
             }
         };
-        openClimb.whenPressed(new OpenClimbCommand());
         closeClimb.whenPressed(new closeClimbCommand());
-        spinPanelButton.whenPressed(new SpinPanelCommand());
-        openPanelWheel.whenPressed(new TogglePanelPistonCommand());
+        
+        toggleIntakeLift = new JoystickButton(operator, RobotConstants.SELECT_BUTTON); 
         toggleIntakeLift.whenPressed(new ToggleIntakeLiftPistonCommand());
 
     }

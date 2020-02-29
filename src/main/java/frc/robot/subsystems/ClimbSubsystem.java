@@ -19,29 +19,30 @@ public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
 
   Victor winchMotor;
   DoubleSolenoid hookPiston = new DoubleSolenoid(RobotMap.CLIMB_PISTON_FORWARD, RobotMap.CLIMB_PISTON_REVERSE);
-  /**
-   * Creates a new ClimbSubsystem.
-   */
 
   public ClimbSubsystem() {
 
-    winchMotor = new Victor (RobotMap.WINCH_MOTOR);
+    winchMotor = new Victor(RobotMap.WINCH_MOTOR);
     hookPiston.set(Value.kOff);
 
   }
 
-  public void setWinchMotor (double speed) {
+  public void setWinchMotor(double speed) {
     winchMotor.set(speed);
   }
-  public void openClimb(){
+
+  public void openClimb() {
     hookPiston.set(Value.kForward);
   }
-  public void closeClimb(){
+
+  public void closeClimb() {
     hookPiston.set(Value.kReverse);
   }
-  public void neutralClimb(){
+
+  public void neutralClimb() {
     hookPiston.set(Value.kOff);
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -49,8 +50,8 @@ public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
 
   @Override
   public void updateSmartdashboard() {
-    Robot.shuffleBoardtab.addBoolean("Climb Piston Engaged", () => {
+    Robot.shuffleBoardtab.addBoolean("Climb Piston Engaged", () -> {
       return hookPiston.get() == Value.kForward;
-    }));
+    });
   }
 }

@@ -34,7 +34,7 @@ public class SpinPanelCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (curColor != null) {
+    if (curColor != WheelColor.NONE) {
     switch (curColor) {
       case RED:
         colourScore = 1;
@@ -47,6 +47,9 @@ public class SpinPanelCommand extends CommandBase {
         break;
       case YELLOW:
         colourScore = 2;
+        break;
+      default:
+        colourScore = -1;
         break;
     }
     if(Math.abs(target - colourScore) > 2){
