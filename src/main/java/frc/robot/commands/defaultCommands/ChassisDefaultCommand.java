@@ -5,42 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.defaultCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class IntakeDefaultCommand extends CommandBase {
+public class ChassisDefaultCommand extends CommandBase {
   /**
-   * Creates a new IntakeDefaultCommand.
+   * Creates a new ChassisDefaultCommand.
    */
-  public IntakeDefaultCommand() {
-    addRequirements(Robot.intakeSubsystem);
+  public ChassisDefaultCommand() {
+    addRequirements(Robot.chassisSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(Robot.oi.intake()){
-        Robot.intakeSubsystem.intake();
-      } 
-      if(Robot.oi.outtake()){
-        Robot.intakeSubsystem.outtake();
-      }
-      if(!(Robot.oi.intake()) && !(Robot.oi.outtake())){
-        Robot.intakeSubsystem.stop();
-      }
+    Robot.chassisSubsystem.move(Robot.oi.getSpeed(), Robot.oi.getTurn());
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(final boolean interrupted) {
   }
 
   // Returns true when the command should end.

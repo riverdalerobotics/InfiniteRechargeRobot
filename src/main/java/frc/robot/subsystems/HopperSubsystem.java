@@ -64,7 +64,7 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
 
   @Override
   public void updateSmartdashboard() {
-    Robot.shooterLayout.add("Hopper Sensor", getTop());
+    // Robot.shuffleBoardtab.add("Hopper Sensor", getTop());
   }
 
 }

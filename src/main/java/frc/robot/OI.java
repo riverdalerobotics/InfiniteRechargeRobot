@@ -40,8 +40,8 @@ public class OI implements DashboardUpdater {
         spinPanelButton = new JoystickButton(operator, RobotConstants.A_BUTTON);
         spinPanelButton.whenPressed(new SpinPanelCommand());
         
-        openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         openPanelWheel = new JoystickButton(operator, RobotConstants.B_BUTTON);
+        openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         
         openClimb = new Button (){
             @Override

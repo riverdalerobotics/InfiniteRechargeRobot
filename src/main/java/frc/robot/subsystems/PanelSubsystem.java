@@ -117,7 +117,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-    Robot.colorLayout.addString("Target Color", () -> colorLookup[getTargetColour()]);
-    Robot.colorLayout.addString("Current Color", () -> getColor().toString());
+    // Robot.shuffleBoardtab.addString("Target Color", () -> colorLookup[getTargetColour()]);
+    // Robot.shuffleBoardtab.addString("Current Color", () -> getColor().toString());
   }
 }

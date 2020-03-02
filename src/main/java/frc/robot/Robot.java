@@ -13,15 +13,14 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.ChassisDefaultCommand;
-import frc.robot.commands.ClimbDefaultCommand;
-import frc.robot.commands.HopperDefaultCommand;
-import frc.robot.commands.IntakeDefaultCommand;
-import frc.robot.commands.PanelDefaultCommand;
-import frc.robot.commands.ShooterDefaultCommand;
+import frc.robot.commands.defaultCommands.ChassisDefaultCommand;
+import frc.robot.commands.defaultCommands.ClimbDefaultCommand;
+import frc.robot.commands.defaultCommands.HopperDefaultCommand;
+import frc.robot.commands.defaultCommands.IntakeDefaultCommand;
+import frc.robot.commands.defaultCommands.PanelDefaultCommand;
+import frc.robot.commands.defaultCommands.ShooterDefaultCommand;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.HopperSubsystem;
@@ -49,8 +48,8 @@ public class Robot extends TimedRobot {
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final ShuffleboardTab shuffleBoardtab = Shuffleboard.getTab("Game Tab");
-  public static final ShuffleboardLayout shooterLayout = Robot.shuffleBoardtab.getLayout("Shooter System");
-  public static final ShuffleboardLayout colorLayout = Robot.shuffleBoardtab.getLayout("Color System");
+  // public static final ShuffleboardLayout shooterLayout = Robot.shuffleBoardtab.getLayout("Shooter System");
+  // public static final ShuffleboardLayout colorLayout = Robot.shuffleBoardtab.getLayout("Color System");
 
   public static final OI oi = new OI();
   public static UsbCamera camera;

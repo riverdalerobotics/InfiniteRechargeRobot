@@ -50,8 +50,8 @@ public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
 
   @Override
   public void updateSmartdashboard() {
-    Robot.shuffleBoardtab.addBoolean("Climb Piston Engaged", () -> {
-      return hookPiston.get() == Value.kForward;
-    });
+    // Robot.shuffleBoardtab.addBoolean("Climb Piston Engaged", () -> {
+    //   return hookPiston.get() == Value.kForward;
+    // });
   }
 }

@@ -82,9 +82,9 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-    Robot.shuffleBoardtab.add(drive);
-    Robot.shuffleBoardtab.add("Right Encoder", getRightEncoder());
-    Robot.shuffleBoardtab.add("Left Encoder", getLeftEncoder());
+    // Robot.shuffleBoardtab.add(drive);
+    // Robot.shuffleBoardtab.add("Right Encoder", getRightEncoder());
+    // Robot.shuffleBoardtab.add("Left Encoder", getLeftEncoder());
   }
 
 }

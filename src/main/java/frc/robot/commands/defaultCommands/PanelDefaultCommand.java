@@ -5,28 +5,31 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.defaultCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ChassisDefaultCommand extends CommandBase {
+public class PanelDefaultCommand extends CommandBase {
   /**
-   * Creates a new ChassisDefaultCommand.
+   * Creates a new PanelDefaultCommand.
    */
-  public ChassisDefaultCommand() {
-    addRequirements(Robot.chassisSubsystem);
+  public PanelDefaultCommand() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.panelSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.chassisSubsystem.move(Robot.oi.getSpeed(), Robot.oi.getTurn());
+    double speed = Robot.oi.getPanelSpeed();
+    Robot.panelSubsystem.spin(speed);
   }
 
   // Called once the command ends or is interrupted.

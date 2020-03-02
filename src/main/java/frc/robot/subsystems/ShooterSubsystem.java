@@ -54,13 +54,13 @@ public class ShooterSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-    Robot.shooterLayout.addNumber("Shooter Speed", () -> {
-      return getShooterVelocity();
-    });
-    Robot.shooterLayout.addNumber("Target Shooter Speed", () -> RobotConstants.MIN_SHOOT_VELOCITY);
-    Robot.shooterLayout.addBoolean("Shooter Ready", () -> {
-      return getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY;
-    });
+    // Robot.shuffleBoardtab.addNumber("Shooter Speed", () -> {
+    //   return getShooterVelocity();
+    // });
+    // Robot.shuffleBoardtab.addNumber("Target Shooter Speed", () -> RobotConstants.MIN_SHOOT_VELOCITY);
+    // Robot.shuffleBoardtab.addBoolean("Shooter Ready", () -> {
+    //   return getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY;
+    // });
   }
 
 }

@@ -5,18 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.defaultCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class PanelDefaultCommand extends CommandBase {
+public class IntakeDefaultCommand extends CommandBase {
   /**
-   * Creates a new PanelDefaultCommand.
+   * Creates a new IntakeDefaultCommand.
    */
-  public PanelDefaultCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.panelSubsystem);
+  public IntakeDefaultCommand() {
+    addRequirements(Robot.intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -28,8 +27,15 @@ public class PanelDefaultCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = Robot.oi.getPanelSpeed();
-    Robot.panelSubsystem.spin(speed);
+      if(Robot.oi.intake()){
+        Robot.intakeSubsystem.intake();
+      } 
+      if(Robot.oi.outtake()){
+        Robot.intakeSubsystem.outtake();
+      }
+      if(!(Robot.oi.intake()) && !(Robot.oi.outtake())){
+        Robot.intakeSubsystem.stop();
+      }
   }
 
   // Called once the command ends or is interrupted.

@@ -5,30 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.defaultCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ClimbDefaultCommand extends CommandBase {
+public class HopperDefaultCommand extends CommandBase {
   /**
-   * Creates a new ClimbDefaultCommand.
+   * Creates a new HopperDefaultCommand.
    */
-  public ClimbDefaultCommand() {
-    addRequirements(Robot.climbSubsystem);
+  public HopperDefaultCommand() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climbSubsystem.setWinchMotor(Robot.oi.getWinchSpeed());
-    
+    boolean intake = Robot.oi.hopperForward();
+    boolean outtake = Robot.oi.reverseHopper();
+    if (intake || outtake) {
+      if (intake && outtake) {
+        Robot.hopperSubsystem.stop();
+      } else if (intake) {
+        Robot.hopperSubsystem.moveForward();
+      } else {
+        Robot.hopperSubsystem.moveBackwards();
+      }
+    } else {
+      Robot.hopperSubsystem.stop();
+    }
   }
 
   // Called once the command ends or is interrupted.
