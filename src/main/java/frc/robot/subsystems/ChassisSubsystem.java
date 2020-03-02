@@ -9,12 +9,12 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
@@ -82,9 +82,9 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-    // Robot.shuffleBoardtab.add(drive);
-    // Robot.shuffleBoardtab.add("Right Encoder", getRightEncoder());
-    // Robot.shuffleBoardtab.add("Left Encoder", getLeftEncoder());
+    SmartDashboard.putData(drive);
+    SmartDashboard.putNumber("Right Encoder", getRightEncoder());
+    SmartDashboard.putNumber("Left Encoder", getLeftEncoder());
   }
 
 }

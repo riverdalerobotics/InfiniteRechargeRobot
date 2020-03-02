@@ -9,10 +9,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
@@ -50,8 +50,6 @@ public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
 
   @Override
   public void updateSmartdashboard() {
-    // Robot.shuffleBoardtab.addBoolean("Climb Piston Engaged", () -> {
-    //   return hookPiston.get() == Value.kForward;
-    // });
+    SmartDashboard.putBoolean("Climb Piston Engaged", hookPiston.get() == Value.kForward);
   }
 }

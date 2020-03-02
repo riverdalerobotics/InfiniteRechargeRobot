@@ -14,10 +14,10 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
-import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.WheelColor;
@@ -56,26 +56,14 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
     // This method will be called once per scheduler run
   }
 
-  public int getTargetColour() {
+  public WheelColor getTargetColour() {
     String gameData;
     gameData = DriverStation.getInstance().getGameSpecificMessage();
     if(gameData.length() > 0)
     {
-      switch (gameData.charAt(0))
-      {
-        case 'B' :
-          return 3;
-        case 'G' :
-          return 4;
-        case 'R' :
-          return 1;
-        case 'Y' :
-          return 2;
-        default :
-          break;
-      }
+      return WheelColor.getColorForChar(gameData.charAt(0));
     }
-    return 0;
+    return WheelColor.NONE;
   }
 
   public WheelColor getColor () {
@@ -117,7 +105,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   @Override
   public void updateSmartdashboard() {
-    // Robot.shuffleBoardtab.addString("Target Color", () -> colorLookup[getTargetColour()]);
-    // Robot.shuffleBoardtab.addString("Current Color", () -> getColor().toString());
+    SmartDashboard.putString("Target Color", getTargetColour().toString());
+    SmartDashboard.putString("Current Color", getColor().toString());
   }
 }

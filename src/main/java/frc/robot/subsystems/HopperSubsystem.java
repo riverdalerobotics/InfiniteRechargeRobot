@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
 import frc.robot.Robot;
@@ -64,7 +65,7 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
 
   @Override
   public void updateSmartdashboard() {
-    // Robot.shuffleBoardtab.add("Hopper Sensor", getTop());
+    SmartDashboard.putBoolean("Hopper Top Sensor", getTop());
   }
 
 }
