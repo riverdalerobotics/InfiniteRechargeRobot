@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.CloseClimbCommand;
 import frc.robot.commands.OpenClimbCommand;
 import frc.robot.commands.SpinPanelCommand;
 import frc.robot.commands.ToggleIntakeLiftPistonCommand;
 import frc.robot.commands.TogglePanelPistonCommand;
-import frc.robot.commands.closeClimbCommand;
 
 /**
  * Add your docs here.
@@ -57,7 +57,7 @@ public class OI implements DashboardUpdater {
                 return operator.getPOV() == RobotConstants.D_PAD_DOWN;
             }
         };
-        closeClimb.whenPressed(new closeClimbCommand());
+        closeClimb.whenPressed(new CloseClimbCommand());
         
         toggleIntakeLift = new JoystickButton(operator, RobotConstants.SELECT_BUTTON); 
         toggleIntakeLift.whenPressed(new ToggleIntakeLiftPistonCommand());

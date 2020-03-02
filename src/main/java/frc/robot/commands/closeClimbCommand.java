@@ -13,8 +13,8 @@ import frc.robot.Robot;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class closeClimbCommand extends InstantCommand {
-  public closeClimbCommand() {
+public class CloseClimbCommand extends InstantCommand {
+  public CloseClimbCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climbSubsystem);
   }
