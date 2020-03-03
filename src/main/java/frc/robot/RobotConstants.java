@@ -16,8 +16,10 @@ public class RobotConstants {
     public final static double HOPPER_SPEED = 0.5;
     public final static double SHOOTER_SPEED = 1;
 
+    public final static double DRIVE_SPEED = 0.4;
+    
     public final static double PANEL_SPEED = 0.5;
-
+    
     public final static double TRIGGER_DEADBAND = 0.3;
 
     public final static int A_BUTTON = 1;
