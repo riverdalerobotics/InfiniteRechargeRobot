@@ -81,11 +81,11 @@ public class OI implements DashboardUpdater {
     }
 
     public boolean intake(){
-        return operator.getBumper(Hand.kLeft);
+        return operator.getBumper(Hand.kRight);
     }
 
     public boolean outtake(){
-        return operator.getBumper(Hand.kRight);
+        return operator.getBumper(Hand.kLeft);
     }
 
     public boolean revShooter(){

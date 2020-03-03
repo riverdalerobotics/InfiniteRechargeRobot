@@ -32,6 +32,7 @@ public class IntakeSubsystem extends SubsystemBase implements DashboardUpdater{
    */
   public IntakeSubsystem() {
     intakeMotor = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR);
+    intakeMotor.setInverted(true);
 
     indexSensor = new DigitalInput(RobotMap.INTAKE_PROXIMITY_SENSOR);
 
