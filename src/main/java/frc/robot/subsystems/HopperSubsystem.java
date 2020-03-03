@@ -44,9 +44,9 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
   }
 
   public void moveForward() {
-    if (!getTop()) {
-      setHopperMotor(RobotConstants.HOPPER_SPEED);
-    } else if (Robot.shooterSubsystem.getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY) {
+    if (getTop() && Robot.shooterSubsystem.getShooterVelocity() < RobotConstants.MIN_SHOOT_VELOCITY) {
+      setHopperMotor(0);
+    } else {
       setHopperMotor(RobotConstants.HOPPER_SPEED);
     }
   }

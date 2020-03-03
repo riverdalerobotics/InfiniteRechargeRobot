@@ -21,7 +21,8 @@ public class RobotConstants {
     public final static double TRIGGER_DEADBAND = 0.3;
 
     public final static int A_BUTTON = 1;
-    public final static int B_BUTTON = 3;
+    public final static int B_BUTTON = 2;
+    public final static int X_BUTTON = 4;
     public final static int SELECT_BUTTON = 8;
     public final static int D_PAD_UP = 0;
     public final static int D_PAD_DOWN = 180;

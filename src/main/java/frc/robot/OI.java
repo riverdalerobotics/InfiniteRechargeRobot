@@ -10,8 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.CloseClimbCommand;
+import frc.robot.commands.IntakeSequenceCommandGroup;
 import frc.robot.commands.OpenClimbCommand;
 import frc.robot.commands.SpinPanelCommand;
 import frc.robot.commands.ToggleIntakeLiftPistonCommand;
@@ -25,41 +25,37 @@ public class OI implements DashboardUpdater {
     XboxController operator = new XboxController(RobotMap.XBOXCONTROLLER_OPERATING);
     XboxController driver = new XboxController(RobotMap.XBOXCONTROLLER_MOVING);
 
-    /** Button: A   Number: 1 */
-    JoystickButton spinPanelButton;
-    /** Button B   Number: 2 */
-    JoystickButton openPanelWheel;
-    /** D-Pad up */
+    /** Operator Button: A */
+    Button spinPanelButton;
+    /** Operator Button B */
+    Button openPanelWheel;
+    /** Operator Button X */
+    Button intakeSequence;
+    /** Operator D-Pad up */
     Button openClimb;
-    /** D-Pad down */
+    /** Operator D-Pad down */
     Button closeClimb;
-
-    JoystickButton toggleIntakeLift;
+    /** Operator Select Button */
+    Button toggleIntakeLift;
+    
     public OI () {
         
-        spinPanelButton = new JoystickButton(operator, RobotConstants.A_BUTTON);
+        spinPanelButton = new Button(() -> operator.getAButton());
         spinPanelButton.whenPressed(new SpinPanelCommand());
         
-        openPanelWheel = new JoystickButton(operator, RobotConstants.B_BUTTON);
+        openPanelWheel = new Button(() -> operator.getBButton());
         openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         
-        openClimb = new Button (){
-            @Override
-            public boolean get() {
-                return operator.getPOV() == RobotConstants.D_PAD_UP;
-            }
-        };
+        intakeSequence = new Button(() -> operator.getXButton());
+        intakeSequence.whenPressed(new IntakeSequenceCommandGroup());
+
+        openClimb = new Button (() ->  operator.getPOV() == RobotConstants.D_PAD_UP);
         openClimb.whenPressed(new OpenClimbCommand());
         
-        closeClimb = new Button (){
-            @Override
-            public boolean get (){
-                return operator.getPOV() == RobotConstants.D_PAD_DOWN;
-            }
-        };
+        closeClimb = new Button (() ->operator.getPOV() == RobotConstants.D_PAD_DOWN);
         closeClimb.whenPressed(new CloseClimbCommand());
         
-        toggleIntakeLift = new JoystickButton(operator, RobotConstants.SELECT_BUTTON); 
+        toggleIntakeLift = new Button(() -> operator.getStartButtonPressed()); 
         toggleIntakeLift.whenPressed(new ToggleIntakeLiftPistonCommand());
 
     }
@@ -95,14 +91,9 @@ public class OI implements DashboardUpdater {
     public boolean revShooter(){
         return operator.getBButton();
     }
-    public boolean spinPanel(){
-        return operator.getAButton();
-    }
+
     public double getPanelSpeed(){
         return operator.getX(Hand.kRight);
-    }
-    public int getClimb(){
-        return operator.getPOV();
     }
 
     @Override
