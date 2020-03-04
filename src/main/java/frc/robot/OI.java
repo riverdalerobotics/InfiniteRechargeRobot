@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoSequence;
 import frc.robot.commands.CloseClimbCommand;
-import frc.robot.commands.DriveAndIntakeCommandGroup;
-import frc.robot.commands.IntakeSequenceCommandGroup;
 import frc.robot.commands.OpenClimbCommand;
 import frc.robot.commands.SpinPanelCommand;
 import frc.robot.commands.ToggleIntakeLiftPistonCommand;
@@ -49,7 +47,7 @@ public class OI implements DashboardUpdater {
         openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         
         intakeSequence = new Button(() -> operator.getXButton());
-        intakeSequence.whenPressed(new AutoSequence());
+        intakeSequence.whenPressed(AutoBuilder.getAutoSequence());
 
         openClimb = new Button (() ->  operator.getPOV() == RobotConstants.D_PAD_UP);
         openClimb.whenPressed(new OpenClimbCommand());
