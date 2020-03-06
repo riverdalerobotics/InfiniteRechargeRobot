@@ -27,7 +27,7 @@ public class AutoBuilder {
     public static CommandBase getAutoSequence () {
        return  new SequentialCommandGroup(driveTo(() -> Robot.chassisSubsystem.getAvgEncoder() >= RobotConstants.INITIATION_DISTANCE), shootSequenceRepeat(autoBalls));
         // return intakeAndShootSequence(autoBalls);
-    }O
+    }
 
     private static SequentialCommandGroup intakeAndShootSequence (int numBalls) {
         
