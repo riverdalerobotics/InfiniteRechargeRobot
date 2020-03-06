@@ -23,6 +23,8 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
   WPI_VictorSPX hopperMotor;
   DigitalInput topProxSensor;
 
+  boolean override;
+
   /**
    * Creates a new HopperSubsystem.
    */
@@ -31,6 +33,9 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
     hopperMotor.setInverted(true);
 
     topProxSensor = new DigitalInput(RobotMap.TOP_PROXIMITY_SENSOR);
+
+    override = false;
+    SmartDashboard.putBoolean("! Override Shooter !", false);
   }
 
   @Override
@@ -66,6 +71,7 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
   @Override
   public void updateSmartdashboard() {
     SmartDashboard.putBoolean("Hopper Top Sensor", getTop());
+    this.override = SmartDashboard.getBoolean("! Override Shooter !", false);
   }
 
 }

@@ -11,6 +11,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DashboardUpdater;
 import frc.robot.RobotConstants;
@@ -60,6 +61,9 @@ public class ShooterSubsystem extends SubsystemBase implements DashboardUpdater{
     // Robot.shuffleBoardtab.addBoolean("Shooter Ready", () -> {
     //   return getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY;
     // });
+    SmartDashboard.putNumber("Shooter Speed", getShooterVelocity());
+    SmartDashboard.putNumber("Target Shooter Speed", RobotConstants.MIN_SHOOT_VELOCITY);
+    SmartDashboard.putBoolean("Shooter Ready", getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY);
   }
 
 }

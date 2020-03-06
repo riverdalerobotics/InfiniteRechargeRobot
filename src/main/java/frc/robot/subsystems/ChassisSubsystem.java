@@ -47,6 +47,7 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
     leftMotorLead.configPeakOutputForward(1);
 
     leftEncoder = new Encoder(RobotMap.LEFT_MOTOR_ENCODER_A, RobotMap.LEFT_MOTOR_ENCODER_B);
+    leftEncoder.setReverseDirection(true);
     
     rightMotorLead = new WPI_VictorSPX(RobotMap.RIGHT_MOTOR_LEAD);
     rightMotorFollowOne = new WPI_VictorSPX(RobotMap.RIGHT_MOTOR_FOLLOW_ONE);
@@ -78,6 +79,10 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
 
   public double getLeftEncoder () {
     return leftEncoder.getDistance();
+  }
+
+  public double getAvgEncoder () {
+    return (getLeftEncoder() + getRightEncoder()) / 2;
   }
 
   @Override

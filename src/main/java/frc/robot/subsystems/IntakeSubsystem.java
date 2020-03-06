@@ -37,7 +37,7 @@ public class IntakeSubsystem extends SubsystemBase implements DashboardUpdater{
     indexSensor = new DigitalInput(RobotMap.INTAKE_PROXIMITY_SENSOR);
 
     intakeLiftPiston = new DoubleSolenoid(RobotMap.INTAKE_LIFT_PISTON_FORWARD, RobotMap.INTAKE_LIFT_PISTON_REVERSE);
-    pistonState = Value.kReverse;
+    pistonState = Value.kForward;
     intakeLiftPiston.set(pistonState);
   }
 

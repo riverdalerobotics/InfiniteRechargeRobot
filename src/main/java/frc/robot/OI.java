@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
-import frc.robot.commands.AutoSequence;
 import frc.robot.commands.CloseClimbCommand;
 import frc.robot.commands.OpenClimbCommand;
 import frc.robot.commands.SpinPanelCommand;
@@ -46,7 +45,7 @@ public class OI implements DashboardUpdater {
         openPanelWheel = new Button(() -> operator.getYButton());
         openPanelWheel.whenPressed(new TogglePanelPistonCommand());
         
-        intakeSequence = new Button(() -> operator.getXButton());
+        intakeSequence = new Button(() -> false);
         intakeSequence.whenPressed(AutoBuilder.getAutoSequence());
 
         openClimb = new Button (() ->  operator.getPOV() == RobotConstants.D_PAD_UP);
@@ -65,7 +64,7 @@ public class OI implements DashboardUpdater {
     }
 
     public double getTurn(){
-        return driver.getX(Hand.kRight);
+        return Math.copySign(Math.pow(driver.getX(Hand.kRight), 2), driver.getX(Hand.kRight));
     }
 
     public double getWinchSpeed() {

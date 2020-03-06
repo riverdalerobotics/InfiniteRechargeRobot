@@ -16,7 +16,7 @@ public class RobotConstants {
     public final static double HOPPER_SPEED = 0.5;
     public final static double SHOOTER_SPEED = 1;
 
-    public final static double DRIVE_SPEED = 0.4;
+    public final static double DRIVE_SPEED = 0.6;
     
     public final static double PANEL_SPEED = 0.5;
     
@@ -32,6 +32,8 @@ public class RobotConstants {
     public final static double DRIVE_P = 0.00025;
     public final static double DRIVE_I = 0.000075;
     public final static double DRIVE_D = 0.00005;
+
+    public final static double INITIATION_DISTANCE = 14500;
 
     public final static double MIN_SHOOT_VELOCITY = 5400;
 }

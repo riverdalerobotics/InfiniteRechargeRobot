@@ -68,15 +68,16 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   public WheelColor getColor () {
     
-    Color c = colorSensor.getColor();
-      if (c.blue  > 200 && c.green > 200 && c.red < 20) {
-        return WheelColor.BLUE;
-      } else if(c.blue < 20 && c.green > 200 && c.red < 20){
-        return WheelColor.GREEN;
-      } else if(c.blue < 20 && c.green < 20 && c.red > 200){
+      Color c = colorSensor.getColor();
+      
+      if (c.red * 255 > 100) {
         return WheelColor.RED;
-      } else if(c.blue < 20 && c.green > 200 && c.red > 200){
+      } else if(c.blue * 255 > 100){
+        return WheelColor.BLUE;
+      } else if(c.red * 255 > 70){
         return WheelColor.YELLOW;
+      } else if(c.green * 255 > 130){
+        return WheelColor.GREEN;
       }
 
       return WheelColor.NONE;

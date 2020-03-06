@@ -26,7 +26,7 @@ public class SpinPanelCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    curColor = Robot.panelSubsystem.getColor();
+    curColor = WheelColor.NONE; //Robot.panelSubsystem.getColor();
     target = Robot.panelSubsystem.getTargetColour();
   }
 

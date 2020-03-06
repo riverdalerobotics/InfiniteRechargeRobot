@@ -90,14 +90,18 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousInit() {
+    CommandScheduler.getInstance().cancelAll();
+    CommandScheduler.getInstance().schedule(AutoBuilder.getAutoSequence());
   }
 
   @Override
   public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
+    CommandScheduler.getInstance().cancelAll();
   }
 
   @Override
