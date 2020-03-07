@@ -32,10 +32,6 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
   DoubleSolenoid upPiston;
   Value pistonState;
-
-  String[] colorLookup = {
-    "---", "Red", "Yellow", "Blue", "Green"
-  };
   
   public PanelSubsystem() {
 
@@ -44,7 +40,7 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
 
     colorSensor = new ColorSensorV3(RobotMap.COLOUR_SENSOR_PORT);
 
-    pistonState = Value.kReverse;
+    pistonState = Value.kForward;
 
     upPiston = new DoubleSolenoid(RobotMap.CONTROL_PANEL_PISTON_FORWARD, RobotMap.CONTROL_PANEL_PISTON_REVERSE);
     upPiston.set(pistonState);
@@ -108,5 +104,8 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
   public void updateSmartdashboard() {
     SmartDashboard.putString("Target Color", getTargetColour().toString());
     SmartDashboard.putString("Current Color", getColor().toString());
+    SmartDashboard.putNumber("R", colorSensor.getColor().red * 255);
+    SmartDashboard.putNumber("G", colorSensor.getColor().green * 255);
+    SmartDashboard.putNumber("B", colorSensor.getColor().blue * 255);
   }
 }

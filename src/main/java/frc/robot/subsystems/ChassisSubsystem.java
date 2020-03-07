@@ -85,6 +85,11 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
     return (getLeftEncoder() + getRightEncoder()) / 2;
   }
 
+  public void resetEncoders ( ) {
+    rightEncoder.reset();
+    leftEncoder.reset();
+  }
+
   @Override
   public void updateSmartdashboard() {
     SmartDashboard.putData(drive);

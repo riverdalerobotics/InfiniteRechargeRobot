@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 
@@ -25,10 +24,11 @@ public class AutoBuilder {
     private final static int autoBalls = 3;
 
     public static CommandBase getAutoSequence () {
-       return  new SequentialCommandGroup(driveTo(() -> Robot.chassisSubsystem.getAvgEncoder() >= RobotConstants.INITIATION_DISTANCE), shootSequenceRepeat(autoBalls));
-        // return intakeAndShootSequence(autoBalls);
+       return  new SequentialCommandGroup(driveTo(() -> Robot.chassisSubsystem.getAvgEncoder() >= RobotConstants.INITIATION_DISTANCE, 6), shootSequenceRepeat(autoBalls));
     }
-
+    
+    
+    @SuppressWarnings("unused")
     private static SequentialCommandGroup intakeAndShootSequence (int numBalls) {
         
         Command[] sequence = new Command[numBalls * 2];
@@ -62,12 +62,17 @@ public class AutoBuilder {
     }
 
     private static CommandBase driveTo (BooleanSupplier bool) {
-        return new RunCommand(() -> Robot.chassisSubsystem.move(RobotConstants.DRIVE_SPEED, 0), Robot.chassisSubsystem) {
-            @Override
-            public void end(boolean interrupted) {
-                Robot.chassisSubsystem.move(0, 0);
-            }
-        }.withInterrupt(bool);
+        return new FunctionalCommand(
+            Robot.chassisSubsystem::resetEncoders, 
+            () -> Robot.chassisSubsystem.move(RobotConstants.DRIVE_SPEED, 0), 
+            (a)-> Robot.chassisSubsystem.move(0, 0), 
+            bool, 
+            Robot.chassisSubsystem
+        );
+    }
+
+    private static CommandBase driveTo (BooleanSupplier bool, double timeout) {
+        return driveTo(bool).withTimeout(timeout);
     }
 
     private static SequentialCommandGroup intakeSequence () {
