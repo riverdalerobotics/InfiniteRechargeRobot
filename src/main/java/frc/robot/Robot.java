@@ -14,6 +14,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.defaultCommands.ChassisDefaultCommand;
 import frc.robot.commands.defaultCommands.ClimbDefaultCommand;
@@ -56,6 +58,8 @@ public class Robot extends TimedRobot {
 
   private static final ArrayList<DashboardUpdater> smartdashboardUpdaters = new ArrayList<DashboardUpdater>();
 
+  public static SendableChooser<String> autoChooser = new SendableChooser<String>();
+
   @Override
   public void robotInit() {
     CommandScheduler.getInstance().setDefaultCommand(chassisSubsystem, new ChassisDefaultCommand());
@@ -79,6 +83,15 @@ public class Robot extends TimedRobot {
     smartdashboardUpdaters.add(oi);
 
     camera = CameraServer.getInstance().startAutomaticCapture();
+
+    autoChooser.setDefaultOption("Shoot", "shoot");
+    autoChooser.addOption("Drive", "drive");
+    SmartDashboard.putData("Auto", autoChooser);
+
+    for (DashboardUpdater updater : smartdashboardUpdaters) {
+      updater.initSubsystem();
+    }
+    
   }
 
   @Override
@@ -91,7 +104,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     CommandScheduler.getInstance().cancelAll();
-    CommandScheduler.getInstance().schedule(AutoBuilder.getAutoSequence());
+    CommandScheduler.getInstance().schedule(AutoBuilder.getAutoSequence(autoChooser.getSelected()));
   }
 
   @Override

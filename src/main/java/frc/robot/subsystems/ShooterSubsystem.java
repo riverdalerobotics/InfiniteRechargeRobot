@@ -66,4 +66,8 @@ public class ShooterSubsystem extends SubsystemBase implements DashboardUpdater{
     SmartDashboard.putBoolean("Shooter Ready", getShooterVelocity() > RobotConstants.MIN_SHOOT_VELOCITY);
   }
 
+  @Override
+  public void initSubsystem() {
+  }
+
 }

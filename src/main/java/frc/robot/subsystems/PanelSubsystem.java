@@ -108,4 +108,10 @@ public class PanelSubsystem extends SubsystemBase implements DashboardUpdater{
     SmartDashboard.putNumber("G", colorSensor.getColor().green * 255);
     SmartDashboard.putNumber("B", colorSensor.getColor().blue * 255);
   }
+
+  @Override
+  public void initSubsystem() {
+    pistonState = Value.kForward;
+    upPiston.set(pistonState);
+  }
 }

@@ -44,9 +44,6 @@ public class OI implements DashboardUpdater {
         
         openPanelWheel = new Button(() -> operator.getYButton());
         openPanelWheel.whenPressed(new TogglePanelPistonCommand());
-        
-        intakeSequence = new Button(() -> false);
-        intakeSequence.whenPressed(AutoBuilder.getAutoSequence());
 
         openClimb = new Button (() ->  operator.getPOV() == RobotConstants.D_PAD_UP);
         openClimb.whenPressed(new OpenClimbCommand());
@@ -67,10 +64,11 @@ public class OI implements DashboardUpdater {
         return Math.copySign(Math.pow(driver.getX(Hand.kRight), 2), driver.getX(Hand.kRight));
     }
 
-    public double getWinchSpeed() {
-        return Robot.deadband(driver.getTriggerAxis(Hand.kRight), RobotConstants.TRIGGER_DEADBAND);
+    public double getWinch() {
+        return Robot.deadband(driver.getTriggerAxis(Hand.kRight), RobotConstants.TRIGGER_DEADBAND) 
+                -   Robot.deadband(driver.getTriggerAxis(Hand.kLeft), RobotConstants.TRIGGER_DEADBAND);
     }
-
+    
     public boolean hopperForward(){
         return operator.getTriggerAxis(Hand.kRight) > RobotConstants.TRIGGER_DEADBAND;
     }
@@ -98,6 +96,10 @@ public class OI implements DashboardUpdater {
     @Override
     public void updateSmartdashboard() {
 
+    }
+
+    @Override
+    public void initSubsystem() {
     }
 
 }

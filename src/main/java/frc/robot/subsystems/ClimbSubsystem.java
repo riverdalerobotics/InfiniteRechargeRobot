@@ -52,4 +52,9 @@ public class ClimbSubsystem extends SubsystemBase implements DashboardUpdater {
   public void updateSmartdashboard() {
     SmartDashboard.putBoolean("Climb Piston Engaged", hookPiston.get() == Value.kForward);
   }
+
+  @Override
+  public void initSubsystem() {
+    closeClimb();
+  }
 }

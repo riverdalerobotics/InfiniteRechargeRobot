@@ -75,4 +75,10 @@ public class IntakeSubsystem extends SubsystemBase implements DashboardUpdater{
   public void updateSmartdashboard() {
   }
 
+  @Override
+  public void initSubsystem() {
+    pistonState = Value.kForward;
+    intakeLiftPiston.set(pistonState);
+  }
+
 }

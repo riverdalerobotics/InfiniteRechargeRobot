@@ -14,4 +14,6 @@ public interface DashboardUpdater {
     
     public abstract void updateSmartdashboard ();
 
+    public abstract void initSubsystem ();
+
 }

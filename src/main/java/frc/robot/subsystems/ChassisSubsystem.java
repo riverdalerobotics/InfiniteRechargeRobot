@@ -97,4 +97,8 @@ public class ChassisSubsystem extends SubsystemBase implements DashboardUpdater{
     SmartDashboard.putNumber("Left Encoder", getLeftEncoder());
   }
 
+  @Override
+  public void initSubsystem() {
+  }
+
 }

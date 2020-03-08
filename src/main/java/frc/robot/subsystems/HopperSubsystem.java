@@ -74,4 +74,8 @@ public class HopperSubsystem extends SubsystemBase implements DashboardUpdater {
     this.override = SmartDashboard.getBoolean("! Override Shooter !", false);
   }
 
+  @Override
+  public void initSubsystem() {
+  }
+
 }
